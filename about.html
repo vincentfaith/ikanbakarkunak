@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Experience | Ikan Bakar Kunak Asli Sabah</title>
+    <!-- SEO & Copywriting Meta -->
+    <meta name="description" content="Selami tradisi panggangan arang Mangium sejak 1984. Ikan Bakar Kunak menawarkan simfoni rasa asap asli dan suasana tepi laut yang mewah.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0c0c0c; color: #ffffff; scroll-behavior: smooth; overflow-x: hidden; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .accent-orange { color: #d35400; }
+        .bg-accent { background-color: #d35400; }
+        
+        /* Editorial Animation */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        
+        /* Gallery Image Effects */
+        .atmosphere-card { position: relative; overflow: hidden; border-radius: 24px; aspect-ratio: 4/5; border: 1px solid rgba(255,255,255,0.05); }
+        .atmosphere-card img { width: 100%; height: 100%; object-fit: cover; transition: all 1.2s cubic-bezier(0.2, 1, 0.3, 1); }
+        .atmosphere-card:hover img { transform: scale(1.1); }
+        .atmosphere-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); opacity: 0; transition: opacity 0.5s; display: flex; align-items: flex-end; padding: 2rem; }
+        .atmosphere-card:hover .atmosphere-overlay { opacity: 1; }
+
+        /* Video Styling */
+        .video-container { position: relative; width: 100%; border-radius: 32px; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(211, 84, 0, 0.2); }
+        .video-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.3); pointer-events: none; }
+
+        .line-glow { height: 1px; background: linear-gradient(90deg, transparent, #d35400, transparent); width: 100%; margin: 4rem 0; }
+
+        /* Mobile Menu Animation */
+        #mobile-menu {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-20px);
+        }
+        #mobile-menu.active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Overlay Background -->
+    <div id="menu-overlay" onclick="toggleMenu()" class="fixed inset-0 bg-black/60 z-[45] hidden backdrop-blur-sm"></div>
+
+    <!-- NAVBAR (Consistent with Menu Page) -->
+    <nav class="fixed w-full z-[50] bg-black/80 backdrop-blur-md border-b border-white/10 px-6 md:px-12 py-5 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+            <span class="text-xl md:text-2xl font-bold tracking-tighter uppercase"><span class="accent-orange">Ikan Bakar</span> Kunak</span>
+        </div>
+        
+        <!-- Desktop Links -->
+        <div class="hidden md:flex gap-10 text-[11px] font-bold uppercase tracking-[0.2em]">
+            <a href="index.html" class="hover:text-orange-500 transition-colors">Home</a>
+            <a href="menu.html" class="hover:text-orange-500 transition-colors">Menu</a>
+            <a href="about.html" class="text-orange-500">Experience</a>
+            <a href="contact.html" class="hover:text-orange-500 transition-colors">Contact</a>
+        </div>
+
+        <div class="flex items-center gap-4">
+            <!-- Mobile Toggle Button -->
+            <button onclick="toggleMenu()" class="md:hidden p-2 text-white">
+                <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+
+            <a href="contact.html" class="hidden sm:block border border-orange-600 text-white px-7 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-orange-600 transition-all duration-300">Reserve Now</a>
+        </div>
+
+        <!-- MOBILE DROPDOWN MENU -->
+        <div id="mobile-menu" class="absolute top-full left-0 w-full bg-[#0c0c0c] border-b border-white/10 p-8 flex flex-col gap-6 text-center md:hidden z-[-1]">
+            <a href="index.html" class="text-sm uppercase tracking-widest font-bold">Home</a>
+            <a href="menu.html" class="text-sm uppercase tracking-widest font-bold">Menu</a>
+            <a href="about.html" class="text-sm uppercase tracking-widest font-bold text-orange-500">Experience</a>
+            <a href="contact.html" class="text-sm uppercase tracking-widest font-bold">Contact</a>
+            <hr class="border-white/5">
+            <a href="contact.html" class="bg-accent text-white py-4 rounded-xl font-bold uppercase text-xs tracking-widest">Book A Table</a>
+        </div>
+    </nav>
+
+    <!-- HERO EXPERIENCE -->
+    <section class="pt-48 pb-20 px-6 md:px-20 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="reveal active">
+                <span class="text-orange-500 font-bold uppercase tracking-[0.5em] text-[10px] mb-6 block">Kisah Di Sebalik Api</span>
+                <h1 class="text-6xl md:text-8xl font-serif mb-10 leading-tight">A Symphony of <span class="accent-orange italic">Smoke & Soul.</span></h1>
+                <p class="text-gray-400 font-light leading-relaxed text-lg mb-8 italic">"Panggangan bukan sekadar teknik memasak—ia adalah satu bentuk seni yang menghidupkan jiwa warisan Sabah."</p>
+                
+                <div class="flex gap-10 mt-12">
+                    <div class="border-l border-orange-900 pl-6">
+                        <span class="text-3xl font-serif accent-orange">1984</span>
+                        <p class="text-[10px] uppercase tracking-widest text-gray-500 mt-2">Warisan Bermula</p>
+                    </div>
+                    <div class="border-l border-orange-900 pl-6">
+                        <span class="text-3xl font-serif accent-orange">100%</span>
+                        <p class="text-[10px] uppercase tracking-widest text-gray-500 mt-2">Arang Mangium</p>
+                    </div>
+                </div>
+            </div>
+            <div class="relative reveal active">
+                <div class="border border-white/10 p-4 rounded-[32px]">
+                    <img src="https://thumbs.dreamstime.com/b/baked-fish-grill-fire-closeup-42157846.jpg" class="rounded-[24px] transition duration-1000 shadow-2xl" alt="Grill Master">
+                </div>
+                <div class="absolute -bottom-10 -left-10 bg-accent p-8 rounded-2xl hidden md:block">
+                    <p class="text-white text-sm font-bold">Resipi Turun Temurun</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VIDEO SECTION: LIVE GRILLING -->
+    <section class="py-20 px-6 md:px-20 max-w-7xl mx-auto reveal">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-serif italic"><span class="accent-orange not-italic">Saksikan</span> Seni Panggangan Kami</h2>
+        </div>
+        <div class="video-container aspect-video">
+            <div class="video-overlay"></div>
+            <iframe 
+                class="w-full h-full" 
+                src="videoikan (2).mp4" 
+                frameborder="0" 
+                allow="autoplay; encrypted-media" 
+                allowfullscreen>
+            </iframe>
+        </div>
+    </section>
+
+    <div class="line-glow"></div>
+
+    <!-- ATMOSPHERE SECTION -->
+    <section class="py-20 px-6 md:px-20 max-w-7xl mx-auto">
+        <div class="text-center mb-20 reveal">
+            <h2 class="text-5xl font-serif italic mb-6">Suasana <span class="accent-orange not-italic">Premium</span></h2>
+            <p class="text-gray-500 max-w-xl mx-auto text-sm font-light uppercase tracking-widest">Keselesaan Mewah Di Pinggir Laut Kunak.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="atmosphere-card reveal" style="transition-delay: 0.1s;">
+                <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/23/07/d4/d2/dine-by-the-al-fresco.jpg?w=500&h=-1&s=1" alt="Interior">
+                <div class="atmosphere-overlay">
+                    <div>
+                        <h4 class="text-2xl font-serif italic text-white">The Indoor Lounge</h4>
+                        <p class="text-xs text-orange-400 mt-2 uppercase tracking-widest">Intimate & Warm</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="atmosphere-card reveal" style="transition-delay: 0.3s;">
+                <img src="https://cdn0-production-images-kly.akamaized.net/Ded9oyUBV3zFQhj4cnSlZMPvdPA=/1200x1200/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/3993228/original/094950500_1649758101-20220412-Restoran-Bertema-Ikan-Thailand-1.jpg" alt="Outdoor">
+                <div class="atmosphere-overlay">
+                    <div>
+                        <h4 class="text-2xl font-serif italic text-white">Seaside Al Fresco</h4>
+                        <p class="text-xs text-orange-400 mt-2 uppercase tracking-widest">Ocean Breeze</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="atmosphere-card reveal" style="transition-delay: 0.5s;">
+                <img src="https://cdn.pixabay.com/photo/2024/01/09/15/39/ai-generated-8497829_1280.jpg" alt="Kitchen">
+                <div class="atmosphere-overlay">
+                    <div>
+                        <h4 class="text-2xl font-serif italic text-white">The Smoke Stage</h4>
+                        <p class="text-xs text-orange-400 mt-2 uppercase tracking-widest">Live Performance</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIAL -->
+    <section class="py-32 bg-[#111] mt-20 text-center px-6 reveal">
+        <div class="max-w-3xl mx-auto">
+            <span class="text-4xl accent-orange font-serif">"</span>
+            <blockquote class="text-3xl md:text-4xl font-serif italic leading-snug mb-8">
+                Rasa asli Sabah yang tidak akan anda temui di tempat lain. Aroma asapnya sangat eksklusif.
+            </blockquote>
+            <p class="text-xs uppercase tracking-[0.5em] text-gray-600">— Penilai Makanan, Sabah Tourism</p>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-40 text-center reveal">
+        <h2 class="text-5xl font-serif mb-10 italic">Alami Sendiri <span class="accent-orange not-italic">Keajaiban Api.</span></h2>
+        <a href="menu.html" class="inline-block bg-accent text-white px-12 py-4 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-orange-600 transition-all duration-500 shadow-xl shadow-orange-900/40">Tempah Meja Anda</a>
+    </section>
+
+    <footer class="py-10 text-center border-t border-white/5 opacity-30 text-[10px] tracking-widest">
+        DESIGNED BY CODEXVIII &copy; 2026
+    </footer>
+
+    <script>
+        // Toggle Mobile Menu
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const overlay = document.getElementById('menu-overlay');
+            menu.classList.toggle('active');
+            overlay.classList.toggle('hidden');
+        }
+
+        // Smooth Reveal Logic
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

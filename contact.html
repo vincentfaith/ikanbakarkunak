@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalize Order | Ikan Bakar Kunak</title>
+    <!-- SEO & Branding -->
+    <meta name="description" content="Selesaikan tempahan Ikan Bakar Kunak anda secara atas talian.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0c0c0c; color: #ffffff; overflow-x: hidden; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .accent-orange { color: #d35400; }
+        .bg-accent { background-color: #d35400; }
+
+        /* Premium Form Fields */
+        .input-field { 
+            background: rgba(255, 255, 255, 0.03); 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            padding: 1.25rem; 
+            border-radius: 1rem; 
+            width: 100%; 
+            outline: none; 
+            color: white; 
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+        .input-field:focus { 
+            border-color: #d35400; 
+            background: rgba(211, 84, 0, 0.05);
+            box-shadow: 0 0 20px rgba(211, 84, 0, 0.1);
+        }
+
+        /* Summary Box Luxury Look */
+        .order-summary-box { 
+            background: linear-gradient(145deg, rgba(20, 20, 20, 1), rgba(30, 30, 30, 1));
+            border: 1px solid rgba(211, 84, 0, 0.3); 
+            padding: 2.5rem; 
+            border-radius: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .line-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(211, 84, 0, 0.5), transparent); margin: 3rem 0; }
+
+        /* Mobile Menu Animation */
+        #mobile-menu {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-20px);
+        }
+        #mobile-menu.active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+        
+        /* Custom Scrollbar for Luxury Feel */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #0c0c0c; }
+        ::-webkit-scrollbar-thumb { background: #d35400; border-radius: 10px; }
+    </style>
+</head>
+<body>
+
+    <!-- Overlay Background -->
+    <div id="menu-overlay" onclick="toggleMenu()" class="fixed inset-0 bg-black/60 z-[45] hidden backdrop-blur-sm"></div>
+
+    <!-- NAVBAR (Strict Consistency) -->
+    <nav class="fixed w-full z-[50] bg-black/80 backdrop-blur-md border-b border-white/10 px-6 md:px-12 py-5 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+            <span class="text-xl md:text-2xl font-bold tracking-tighter uppercase"><span class="accent-orange">Ikan Bakar</span> Kunak</span>
+        </div>
+        
+        <div class="hidden md:flex gap-10 text-[11px] font-bold uppercase tracking-[0.2em]">
+            <a href="index.html" class="hover:text-orange-500 transition-colors">Home</a>
+            <a href="menu.html" class="hover:text-orange-500 transition-colors">Menu</a>
+            <a href="about.html" class="hover:text-orange-500 transition-colors">Experience</a>
+            <a href="contact.html" class="text-orange-500">Contact</a>
+        </div>
+
+        <div class="flex items-center gap-4">
+            <button onclick="toggleMenu()" class="md:hidden p-2 text-white">
+                <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+            <a href="menu.html" class="hidden sm:block border border-orange-600 text-white px-7 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-orange-600 transition-all duration-300">Edit Order</a>
+        </div>
+
+        <!-- MOBILE DROPDOWN -->
+        <div id="mobile-menu" class="absolute top-full left-0 w-full bg-[#0c0c0c] border-b border-white/10 p-8 flex flex-col gap-6 text-center md:hidden z-[-1]">
+            <a href="index.html" class="text-sm uppercase tracking-widest font-bold">Home</a>
+            <a href="menu.html" class="text-sm uppercase tracking-widest font-bold">Menu</a>
+            <a href="about.html" class="text-sm uppercase tracking-widest font-bold">Experience</a>
+            <a href="contact.html" class="text-sm uppercase tracking-widest font-bold text-orange-500">Contact</a>
+            <hr class="border-white/5">
+            <a href="menu.html" class="bg-accent text-white py-4 rounded-xl font-bold uppercase text-xs tracking-widest">Edit Order</a>
+        </div>
+    </nav>
+
+    <section class="pt-40 pb-20 px-6 md:px-20 max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+            <span class="text-orange-500 font-bold uppercase tracking-[0.4em] text-[10px] mb-4 block">Reservation & Checkout</span>
+            <h1 class="text-5xl md:text-7xl font-serif italic mb-6">Finalize <span class="accent-orange not-italic">Order</span></h1>
+            <p class="text-gray-500 font-light max-w-lg mx-auto text-sm leading-relaxed">Sahkan butiran anda untuk pengalaman kulinari yang tidak dilupakan di Kunak, Sabah.</p>
+        </div>
+
+        <!-- ORDER SUMMARY -->
+        <div id="summary-container" class="mb-12 hidden">
+            <div class="order-summary-box">
+                <div class="flex items-center gap-3 mb-8">
+                    <div class="w-2 h-2 rounded-full bg-orange-600 animate-pulse"></div>
+                    <h3 class="font-bold uppercase text-[10px] tracking-[0.3em] text-gray-400">Ringkasan Pesanan</h3>
+                </div>
+                
+                <div id="order-list" class="space-y-5 text-sm text-gray-200">
+                    <!-- Items injected by JS -->
+                </div>
+                
+                <div class="mt-10 pt-8 border-t border-white/5 flex justify-between items-end">
+                    <div>
+                        <p class="text-[10px] uppercase tracking-widest text-gray-500">Jumlah Bayaran (Est.)</p>
+                        <p id="order-total" class="text-4xl font-serif accent-orange mt-1">RM 0.00</p>
+                    </div>
+                    <span class="text-[10px] text-gray-600 italic tracking-widest">*Bayaran dilakukan di kaunter</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="line-divider"></div>
+        
+        <!-- FORM -->
+        <form id="orderForm" class="space-y-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="space-y-3">
+                    <label class="text-[10px] uppercase tracking-[0.2em] text-gray-500 ml-2 font-bold">Nama Penuh</label>
+                    <input type="text" id="name" placeholder="cth: Vincent Ramos" class="input-field" required>
+                </div>
+                <div class="space-y-3">
+                    <label class="text-[10px] uppercase tracking-[0.2em] text-gray-500 ml-2 font-bold">No. Telefon</label>
+                    <input type="tel" id="phone" placeholder="cth: 019888XXXX" class="input-field" required>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="space-y-3">
+                    <label class="text-[10px] uppercase tracking-[0.2em] text-gray-500 ml-2 font-bold">Tarikh Temu Janji</label>
+                    <input type="date" id="date" class="input-field" required>
+                </div>
+                <div class="space-y-3">
+                    <label class="text-[10px] uppercase tracking-[0.2em] text-gray-500 ml-2 font-bold">Bilangan Pax</label>
+                    <input type="number" id="guests" placeholder="cth: 4" class="input-field" required>
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                <label class="text-[10px] uppercase tracking-[0.2em] text-gray-500 ml-2 font-bold">Permintaan Khas (Opsional)</label>
+                <textarea id="requests" placeholder="cth: Kurangkan pedas, sambutan hari lahir, dsb." rows="4" class="input-field"></textarea>
+            </div>
+            
+            <button type="submit" class="w-full bg-accent py-6 rounded-2xl font-bold uppercase tracking-[0.3em] text-xs hover:bg-orange-600 transition-all duration-500 shadow-2xl shadow-orange-900/30 flex justify-center items-center gap-4 group">
+                <span>Confirm & Send to WhatsApp</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 group-hover:translate-x-2 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+            </button>
+        </form>
+    </section>
+
+    <footer class="py-20 text-center border-t border-white/5 opacity-30 text-[9px] tracking-[0.4em] uppercase">
+        DESIGNED BY CODEXVIII &copy; 2026
+    </footer>
+
+    <script>
+        // Toggle Mobile Menu Logic
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const overlay = document.getElementById('menu-overlay');
+            menu.classList.toggle('active');
+            overlay.classList.toggle('hidden');
+        }
+
+        // 1. Tarik data dari LocalStorage
+        const savedData = JSON.parse(localStorage.getItem('customerOrder'));
+        
+        if (savedData && savedData.items.length > 0) {
+            document.getElementById('summary-container').classList.remove('hidden');
+            const listContainer = document.getElementById('order-list');
+            
+            savedData.items.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'flex justify-between items-center border-b border-white/5 pb-4';
+                div.innerHTML = `
+                    <div class="flex flex-col">
+                        <span class="font-bold text-white text-base tracking-tight">${item.name}</span>
+                        <span class="text-[10px] text-orange-500 uppercase tracking-widest mt-1 font-semibold">Kuantiti: ${item.quantity}</span>
+                    </div>
+                    <span class="font-serif text-xl italic text-gray-300">RM ${(item.price * item.quantity).toFixed(2)}</span>
+                `;
+                listContainer.appendChild(div);
+            });
+            
+            document.getElementById('order-total').innerText = savedData.total;
+        }
+
+        // 2. Handle Form to WhatsApp
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const date = document.getElementById('date').value;
+            const guests = document.getElementById('guests').value;
+            const requests = document.getElementById('requests').value || "Tiada";
+
+            let message = `*TEMPAHAN BARU - IKAN BAKAR KUNAK*\n`;
+            message += `================================\n\n`;
+            message += `👤 *Nama:* ${name}\n`;
+            message += `📞 *No. Tel:* ${phone}\n`;
+            message += `📅 *Tarikh:* ${date}\n`;
+            message += `👥 *Bil. Orang:* ${guests} Pax\n\n`;
+
+            if (savedData && savedData.items.length > 0) {
+                message += `🍴 *PESANAN MENU:*\n`;
+                savedData.items.forEach((item, index) => {
+                    message += `   ${index + 1}. ${item.name} (x${item.quantity}) - RM ${(item.price * item.quantity).toFixed(2)}\n`;
+                });
+                message += `\n💰 *ESTIMASI TOTAL: ${savedData.total}*\n`;
+            } else {
+                message += `📍 *Tujuan:* Tempahan Meja Sahaja\n`;
+            }
+
+            message += `\n📝 *Nota Khas:* ${requests}\n\n`;
+            message += `--------------------------------\n`;
+            message += `Sila sahkan tempahan ini. Terima kasih!`;
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappNumber = "60199876843"; // Nombor owner
+            
+            window.location.href = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+        });
+    </script>
+</body>
+</html>

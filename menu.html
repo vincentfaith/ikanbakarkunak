@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Lengkap | Ikan Bakar Kunak - Selera Asli Sabah</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0c0c0c; color: #ffffff; overflow-x: hidden; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .accent-orange { color: #d35400; }
+        .bg-accent { background-color: #d35400; }
+        .card-dark { background-color: #161616; border: 1px solid #2a2a2a; transition: all 0.3s ease; }
+        .card-dark:hover { border-color: #d35400; transform: translateY(-5px); box-shadow: 0 10px 30px -10px rgba(211, 84, 0, 0.3); }
+        
+        #cart-items::-webkit-scrollbar { width: 4px; }
+        #cart-items::-webkit-scrollbar-thumb { background: #d35400; border-radius: 10px; }
+        
+        .menu-category-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+        .menu-category-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50%;
+            height: 2px;
+            background: #d35400;
+        }
+
+        /* Mobile Menu Animation */
+        #mobile-menu {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-20px);
+        }
+        #mobile-menu.active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Overlay Backgrounds -->
+    <div id="cart-overlay" onclick="toggleCart()" class="fixed inset-0 bg-black/60 z-[55] hidden backdrop-blur-sm"></div>
+    <div id="menu-overlay" onclick="toggleMenu()" class="fixed inset-0 bg-black/60 z-[45] hidden backdrop-blur-sm"></div>
+
+    <!-- NAVBAR (Updated to match Home Theme) -->
+    <nav class="fixed w-full z-[50] bg-black/80 backdrop-blur-md border-b border-white/10 px-6 md:px-12 py-5 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+            <span class="text-xl md:text-2xl font-bold tracking-tighter uppercase"><span class="accent-orange">Ikan Bakar</span> Kunak</span>
+        </div>
+        
+        <!-- Desktop Links -->
+        <div class="hidden md:flex gap-10 text-[11px] font-bold uppercase tracking-[0.2em]">
+            <a href="index.html" class="hover:text-orange-500 transition-colors">Home</a>
+            <a href="menu.html" class="text-orange-500">Menu</a>
+            <a href="about.html" class="hover:text-orange-500 transition-colors">Experience</a>
+            <a href="contact.html" class="hover:text-orange-500 transition-colors">Contact</a>
+        </div>
+
+        <div class="flex items-center gap-4">
+            <!-- Cart Button -->
+            <button onclick="toggleCart()" class="relative p-2.5 bg-white/5 border border-white/10 rounded-full hover:bg-orange-500 transition group">
+                <span id="cart-count" class="absolute -top-1 -right-1 bg-accent text-[10px] w-5 h-5 flex items-center justify-center rounded-full border-2 border-black font-bold">0</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:scale-110 transition-transform"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            </button>
+            
+            <!-- Mobile Toggle Button -->
+            <button onclick="toggleMenu()" class="md:hidden p-2 text-white">
+                <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+
+            <a href="contact.html" class="hidden sm:block border border-orange-600 text-white px-7 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-orange-600 transition-all duration-300">Order Now</a>
+        </div>
+
+        <!-- MOBILE DROPDOWN MENU -->
+        <div id="mobile-menu" class="absolute top-full left-0 w-full bg-[#0c0c0c] border-b border-white/10 p-8 flex flex-col gap-6 text-center md:hidden z-[-1]">
+            <a href="index.html" class="text-sm uppercase tracking-widest font-bold">Home</a>
+            <a href="menu.html" class="text-sm uppercase tracking-widest font-bold text-orange-500">Menu</a>
+            <a href="about.html" class="text-sm uppercase tracking-widest font-bold">Experience</a>
+            <a href="contact.html" class="text-sm uppercase tracking-widest font-bold">Contact</a>
+            <hr class="border-white/5">
+            <a href="contact.html" class="bg-accent text-white py-4 rounded-xl font-bold uppercase text-xs tracking-widest">Book A Table</a>
+        </div>
+    </nav>
+
+    <!-- SHOPPING CART PANEL -->
+    <div id="cart-panel" class="fixed top-0 right-0 h-full w-full md:w-[420px] bg-[#0f0f0f] z-[60] shadow-2xl transform translate-x-full transition-transform duration-500 ease-in-out border-l border-white/10">
+        <div class="p-8 h-full flex flex-col">
+            <div class="flex justify-between items-center mb-10">
+                <div>
+                    <h2 class="text-3xl font-serif italic text-white">Bakul <span class="accent-orange not-italic">Pesanan</span></h2>
+                    <p class="text-[10px] text-gray-500 uppercase tracking-[0.2em] mt-1">Review hidangan anda</p>
+                </div>
+                <button onclick="toggleCart()" class="w-12 h-12 flex items-center justify-center rounded-full bg-white/5 hover:bg-red-500/20 hover:text-red-500 transition text-2xl font-light">&times;</button>
+            </div>
+
+            <div id="cart-items" class="flex-1 overflow-y-auto space-y-4 pr-2">
+                <div class="text-center py-20">
+                    <p class="text-gray-600 font-light italic text-sm">Bakul masih kosong...</p>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-6 mt-6">
+                <div class="flex justify-between items-center mb-6">
+                    <span class="text-gray-400 uppercase text-[10px] tracking-[0.3em]">Jumlah Anggaran</span>
+                    <span id="cart-total" class="text-2xl font-bold text-white font-serif">RM 0.00</span>
+                </div>
+                <a href="contact.html" onclick="sendOrderData(event)" class="block text-center w-full bg-accent hover:bg-orange-600 text-white py-5 rounded-full font-bold transition uppercase tracking-[0.2em] text-[10px] shadow-lg shadow-orange-900/20">
+                    Confirm Ke WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN MENU CONTENT -->
+    <section class="pt-40 pb-20 px-6 md:px-20 min-h-screen">
+        <div class="text-center mb-24">
+            <span class="accent-orange text-[10px] uppercase tracking-[0.5em] font-bold">Fresh From Kunak Jetty</span>
+            <h1 class="text-5xl md:text-8xl font-serif mb-6 italic mt-4">Senarai <span class="accent-orange not-italic">Juadah</span></h1>
+            <div class="w-20 h-px bg-orange-600 mx-auto mb-6"></div>
+            <p class="text-gray-500 max-w-2xl mx-auto text-sm leading-relaxed">Pilih tangkapan segar hari ini dan kami akan bakar mengikut pesanan anda menggunakan arang kayu asli.</p>
+        </div>
+
+        <!-- CATEGORY: IKAN BAKAR -->
+        <div class="mb-24 max-w-7xl mx-auto">
+            <h2 class="menu-category-title text-3xl font-serif italic text-white">Tangkapan <span class="accent-orange not-italic">Bara Api</span></h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-8">
+                <!-- Item: Pari -->
+                <div class="card-dark rounded-3xl overflow-hidden group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://media.myresipi.com/2022/08/1-5-704x400.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="Ikan Pari Bakar">
+                        <span class="absolute top-4 left-4 bg-orange-600 text-[9px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">Bestseller</span>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold mb-2 group-hover:text-orange-500 transition-colors">Ikan Pari Bakar Kunak</h3>
+                        <p class="text-gray-500 text-xs mb-8 font-light leading-relaxed">Dibakar dalam daun pisang dengan sambal perah limau kasturi.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl font-bold text-white font-serif">RM 35.00</span>
+                            <button onclick="addToCart('Ikan Pari Bakar', 35.00)" class="bg-white text-black w-10 h-10 rounded-full flex items-center justify-center font-bold hover:bg-orange-500 hover:text-white transition-all">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item: Ikan Merah -->
+                <div class="card-dark rounded-3xl overflow-hidden group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://i.ytimg.com/vi/vEH-XHkQiAA/maxresdefault.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="Ikan Merah Bakar">
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold mb-2 group-hover:text-orange-500 transition-colors">Ikan Merah Bakar Kunyit</h3>
+                        <p class="text-gray-500 text-xs mb-8 font-light leading-relaxed">Ikan gred premium, isi putih manis diperap kunyit hidup.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl font-bold text-white font-serif">RM 48.00</span>
+                            <button onclick="addToCart('Ikan Merah Bakar', 48.00)" class="bg-white text-black w-10 h-10 rounded-full flex items-center justify-center font-bold hover:bg-orange-500 hover:text-white transition-all">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item: Kembung -->
+                <div class="card-dark rounded-3xl overflow-hidden group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.aws.nestle.recipes/original/0c7b28f3aac2c9e621ca0eff5d1d2a6f_59098230_l.jpeg" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="Ikan Kembung Bakar">
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold mb-2 group-hover:text-orange-500 transition-colors">Ikan Kembung (2 Ekor)</h3>
+                        <p class="text-gray-500 text-xs mb-8 font-light leading-relaxed">Set bajet kegemaran ramai, dibakar garing luar lembut dalam.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl font-bold text-white font-serif">RM 18.00</span>
+                            <button onclick="addToCart('Ikan Kembung Bakar', 18.00)" class="bg-white text-black w-10 h-10 rounded-full flex items-center justify-center font-bold hover:bg-orange-500 hover:text-white transition-all">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CATEGORY: SEAFOOD LAIN -->
+        <div class="mb-24 max-w-7xl mx-auto">
+            <h2 class="menu-category-title text-3xl font-serif italic text-white">Hasil <span class="accent-orange not-italic">Laut Dalam</span></h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-8">
+                <!-- Sotong XXL -->
+                <div class="card-dark rounded-3xl overflow-hidden group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://cdn.rasa.my/rasa/Untitled-design39-e1505360584966.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="Sotong Bakar">
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold mb-2 group-hover:text-orange-500 transition-colors">Sotong Bakar Kicap XXL</h3>
+                        <p class="text-gray-500 text-xs mb-8 font-light leading-relaxed">Sotong segar saiz gergasi disalut kicap pedas Kunak.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl font-bold text-white font-serif">RM 28.00</span>
+                            <button onclick="addToCart('Sotong Bakar XXL', 28.00)" class="bg-white text-black w-10 h-10 rounded-full flex items-center justify-center font-bold hover:bg-orange-500 hover:text-white transition-all">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Udang Harimau -->
+                <div class="card-dark rounded-3xl overflow-hidden group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsclT3CGJPEaICaL0vhsch8fMPrjbwsu1vKQ&s" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="Udang Harimau Bakar">
+                        <span class="absolute top-4 left-4 bg-orange-600 text-[9px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">Premium</span>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold mb-2 group-hover:text-orange-500 transition-colors">Udang Harimau (4 Ekor)</h3>
+                        <p class="text-gray-500 text-xs mb-8 font-light leading-relaxed">Udang laut dalam, dibakar dengan garlic butter spesial.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl font-bold text-white font-serif">RM 55.00</span>
+                            <button onclick="addToCart('Udang Harimau Bakar', 55.00)" class="bg-white text-black w-10 h-10 rounded-full flex items-center justify-center font-bold hover:bg-orange-500 hover:text-white transition-all">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sotong Goreng Tepung -->
+                <div class="card-dark rounded-3xl overflow-hidden group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://econsave.com.my/wp-content/uploads/2024/05/405194828_335124852571417_8950217488394434381_n.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="Sotong Goreng Tepung">
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold mb-2 group-hover:text-orange-500 transition-colors">Sotong Goreng Tepung</h3>
+                        <p class="text-gray-500 text-xs mb-8 font-light leading-relaxed">Pilihan kanak-kanak & dewasa. Rangup dan tidak liat.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl font-bold text-white font-serif">RM 24.00</span>
+                            <button onclick="addToCart('Sotong Goreng Tepung', 24.00)" class="bg-white text-black w-10 h-10 rounded-full flex items-center justify-center font-bold hover:bg-orange-500 hover:text-white transition-all">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CATEGORY: PELENGKAP & AIR -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 max-w-7xl mx-auto">
+            <div>
+                <h2 class="menu-category-title text-3xl font-serif italic text-white">Sabah <span class="accent-orange not-italic">Side Dish</span></h2>
+                <div class="space-y-4 mt-6">
+                    <div class="card-dark p-6 rounded-2xl flex justify-between items-center group">
+                        <div>
+                            <h4 class="font-bold text-sm group-hover:text-orange-500 transition-colors">Sayur Midin Goreng Belacan</h4>
+                            <p class="text-[10px] text-gray-500 uppercase tracking-widest mt-1">Pucuk paku eksotik Sabah</p>
+                        </div>
+                        <div class="flex items-center gap-6">
+                            <span class="text-sm font-bold font-serif">RM 12.00</span>
+                            <button onclick="addToCart('Midin Goreng', 12.00)" class="w-10 h-10 bg-white text-black rounded-full font-bold hover:bg-orange-500 hover:text-white transition">+</button>
+                        </div>
+                    </div>
+                    <div class="card-dark p-6 rounded-2xl flex justify-between items-center group">
+                        <div>
+                            <h4 class="font-bold text-sm group-hover:text-orange-500 transition-colors">Kangkung Belacan Berapi</h4>
+                            <p class="text-[10px] text-gray-500 uppercase tracking-widest mt-1">Pedas menyengat!</p>
+                        </div>
+                        <div class="flex items-center gap-6">
+                            <span class="text-sm font-bold font-serif">RM 10.00</span>
+                            <button onclick="addToCart('Kangkung Belacan', 10.00)" class="w-10 h-10 bg-white text-black rounded-full font-bold hover:bg-orange-500 hover:text-white transition">+</button>
+                        </div>
+                    </div>
+                    <div class="card-dark p-6 rounded-2xl flex justify-between items-center group">
+                        <div>
+                            <h4 class="font-bold text-sm group-hover:text-orange-500 transition-colors">Nasi Putih (Daun Pisang)</h4>
+                            <p class="text-[10px] text-gray-500 uppercase tracking-widest mt-1">Nasi wangi panas</p>
+                        </div>
+                        <div class="flex items-center gap-6">
+                            <span class="text-sm font-bold font-serif">RM 2.50</span>
+                            <button onclick="addToCart('Nasi Putih', 2.50)" class="w-10 h-10 bg-white text-black rounded-full font-bold hover:bg-orange-500 hover:text-white transition">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h2 class="menu-category-title text-3xl font-serif italic text-white">Minuman <span class="accent-orange not-italic">Segar</span></h2>
+                <div class="space-y-4 mt-6">
+                    <div class="card-dark p-6 rounded-2xl flex justify-between items-center group">
+                        <div>
+                            <h4 class="font-bold text-sm group-hover:text-orange-500 transition-colors">Air Kelapa Muda Sebiji</h4>
+                            <p class="text-[10px] text-gray-500 uppercase tracking-widest mt-1">Segar dari kebun</p>
+                        </div>
+                        <div class="flex items-center gap-6">
+                            <span class="text-sm font-bold font-serif">RM 8.00</span>
+                            <button onclick="addToCart('Air Kelapa', 8.00)" class="w-10 h-10 bg-white text-black rounded-full font-bold hover:bg-orange-500 hover:text-white transition">+</button>
+                        </div>
+                    </div>
+                    <div class="card-dark p-6 rounded-2xl flex justify-between items-center group">
+                        <div>
+                            <h4 class="font-bold text-sm group-hover:text-orange-500 transition-colors">Jus Kedondong Asam Boi</h4>
+                            <p class="text-[10px] text-gray-500 uppercase tracking-widest mt-1">Pembuka selera paling padu</p>
+                        </div>
+                        <div class="flex items-center gap-6">
+                            <span class="text-sm font-bold font-serif">RM 7.00</span>
+                            <button onclick="addToCart('Jus Kedondong', 7.00)" class="w-10 h-10 bg-white text-black rounded-full font-bold hover:bg-orange-500 hover:text-white transition">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black py-20 px-10 border-t border-white/5 text-center">
+        <h2 class="font-serif italic text-2xl mb-6">Ikan Bakar Kunak</h2>
+        <p class="text-[10px] text-gray-600 uppercase tracking-[0.5em]">&copy; 2026 Ikan Bakar Kunak. Segar. Asli. Berasap.</p>
+    </footer>
+
+    <script>
+        let cart = [];
+
+        // UI Functions
+        function toggleCart() {
+            document.getElementById('cart-panel').classList.toggle('translate-x-full');
+            document.getElementById('cart-overlay').classList.toggle('hidden');
+        }
+
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const overlay = document.getElementById('menu-overlay');
+            menu.classList.toggle('active');
+            overlay.classList.toggle('hidden');
+        }
+
+        function addToCart(name, price) {
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ name, price, quantity: 1 });
+            }
+            updateCartUI();
+            
+            // Animation feedback
+            const count = document.getElementById('cart-count');
+            count.classList.add('scale-150', 'bg-white', 'text-black');
+            setTimeout(() => {
+                count.classList.remove('scale-150', 'bg-white', 'text-black');
+            }, 300);
+        }
+
+        function removeFromCart(name) {
+            cart = cart.filter(item => item.name !== name);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const cartCount = document.getElementById('cart-count');
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartTotalDisplay = document.getElementById('cart-total');
+
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.innerText = totalItems;
+
+            cartItemsContainer.innerHTML = '';
+            let totalPrice = 0;
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<div class="text-center py-20 text-gray-600 italic text-sm">Bakul masih kosong. Bah, pilih ikan dulu!</div>';
+            } else {
+                cart.forEach(item => {
+                    const itemTotal = item.price * item.quantity;
+                    totalPrice += itemTotal;
+                    cartItemsContainer.innerHTML += `
+                        <div class="flex justify-between items-center bg-white/5 p-5 rounded-2xl border border-white/5">
+                            <div>
+                                <h4 class="text-sm font-bold text-white">${item.name}</h4>
+                                <p class="text-[10px] text-orange-500 uppercase tracking-widest mt-1">RM ${item.price.toFixed(2)} x ${item.quantity}</p>
+                            </div>
+                            <button onclick="removeFromCart('${item.name}')" class="w-8 h-8 flex items-center justify-center rounded-full bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white transition">&times;</button>
+                        </div>
+                    `;
+                });
+            }
+            cartTotalDisplay.innerText = `RM ${totalPrice.toFixed(2)}`;
+        }
+
+        function sendOrderData(event) {
+            if (cart.length === 0) {
+                alert("Sila pilih menu sebelum membuat pesanan.");
+                event.preventDefault();
+                return;
+            }
+            localStorage.setItem('customerOrder', JSON.stringify({
+                items: cart,
+                total: document.getElementById('cart-total').innerText
+            }));
+        }
+    </script>
+</body>
+</html>
