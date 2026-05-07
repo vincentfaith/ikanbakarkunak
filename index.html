@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ms" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ikan Bakar Kunak | Selera Kampung, Citarasa Bandar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0a0a0a; color: #ffffff; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .bg-gradient-overlay { background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(10,10,10,1)); }
+        .accent-orange { color: #d97706; } /* Warna tembaga/orange dari design */
+        .bg-accent { background-color: #d97706; }
+    </style>
+</head>
+<body class="antialiased">
+
+   <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/10 px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+            <span class="text-xl font-bold tracking-tighter uppercase"><span class="accent-orange">Ikan Bakar</span> Kunak</span>
+        </div>
+        <div class="hidden md:flex gap-8 text-sm font-light uppercase tracking-widest">
+            <a href="index.html" class="accent-orange font-bold">Home</a>
+            <a href="menu.html" class="hover:text-orange-400 transition">Menu</a>
+            <a href="about.html" class="hover:text-orange-400 transition">Experience</a>
+            <a href="contact.html" class="hover:text-orange-400 transition">Contact</a>
+        </div>
+        <a href="contact.html" class="bg-accent text-white px-6 py-2 rounded-full text-xs font-bold uppercase tracking-tighter">Order Now</a>
+    </nav>
+
+    
+<section class="relative h-screen flex items-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-black/50 z-10"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent z-10"></div>
+            
+            <video 
+                autoplay 
+                muted 
+                loop 
+                playsinline 
+                class="w-full h-full object-cover opacity-70"
+            >
+                <source src="videoikan.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <div class="container mx-auto px-10 relative z-20 pt-20">
+            <span class="text-orange-500 font-semibold tracking-[0.3em] uppercase text-[10px] md:text-xs mb-4 block">Authentic Kunak Grilling</span>
+            <h1 class="text-5xl md:text-8xl font-serif leading-tight mb-6 text-white">
+                Selera Kampung,<br>
+                <span class="italic text-orange-600 text-4xl md:text-7xl font-light">Citarasa Bandar</span>
+            </h1>
+            <p class="max-w-lg text-gray-300 font-light leading-relaxed mb-10 text-sm md:text-base">
+                Experience the authentic Kunak grilling method with the freshest catch of the day, delivered straight from the boat to your table.
+            </p>
+            <div class="flex flex-wrap gap-4">
+                <button class="bg-[#d35400] text-white px-8 py-4 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-orange-700 hover:scale-105 transition-all duration-300">
+                    Explore Our Menu &rarr;
+                </button>
+                <button class="border border-white/20 text-white px-8 py-4 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300">
+                    Our Story
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-10 bg-[#0a0a0a]">
+        <div class="flex justify-between items-end mb-12">
+            <div>
+                <h2 class="text-4xl font-serif mb-2 text-white">Chef's <span class="text-orange-600 italic">Specials</span></h2>
+                <p class="text-gray-500 text-sm">Our signature selections crafted with heritage spices</p>
+            </div>
+            <div class="flex gap-4">
+                <button class="w-10 h-10 border border-white/10 rounded-full flex items-center justify-center hover:bg-white/10 transition">&larr;</button>
+                <button class="w-10 h-10 border border-white/10 rounded-full flex items-center justify-center hover:bg-white/10 transition">&rarr;</button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            <div class="bg-[#141414] rounded-2xl overflow-hidden group border border-white/5 hover:border-orange-600/50 transition duration-500">
+                <div class="h-80 overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Ikan Pari">
+                    <div class="absolute bottom-4 left-4">
+                        <span class="bg-[#d35400] text-white px-2 py-1 text-[10px] font-bold uppercase tracking-tighter">Bestseller</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-serif text-xl mb-2 italic text-white">Ikan Pari Bakar</h3>
+                    <p class="text-gray-500 text-xs leading-relaxed mb-6">Our signature stingray grilled with secret chili paste and served on banana leaf.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="font-bold text-lg italic tracking-widest text-gray-200">RM 32.00</span>
+                        <button class="w-10 h-10 bg-white text-black rounded-full flex items-center justify-center font-bold text-xl hover:bg-[#d35400] hover:text-white transition">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-[#141414] rounded-2xl overflow-hidden group border border-white/5 hover:border-orange-600/50 transition duration-500">
+                <div class="h-80 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1626074353765-517a681e40be?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Sotong">
+                </div>
+                <div class="p-6">
+                    <h3 class="font-serif text-xl mb-2 italic text-white">Sotong Goreng Tepung</h3>
+                    <p class="text-gray-500 text-xs leading-relaxed mb-6">Tender Malaysian squid deep-fried in a light, traditional herb-infused batter.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="font-bold text-lg italic tracking-widest text-gray-200">RM 24.00</span>
+                        <button class="w-10 h-10 bg-white text-black rounded-full flex items-center justify-center font-bold text-xl hover:bg-[#d35400] hover:text-white transition">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-[#141414] rounded-2xl overflow-hidden group border border-white/5 hover:border-orange-600/50 transition duration-500">
+                <div class="h-80 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1559739511-e124675c9171?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Udang">
+                </div>
+                <div class="p-6">
+                    <h3 class="font-serif text-xl mb-2 italic text-white">Udang Harimau Bakar</h3>
+                    <p class="text-gray-500 text-xs leading-relaxed mb-6">Giant tiger prawns basted with rempah butter and slow-charred over mangium wood.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="font-bold text-lg italic tracking-widest text-gray-200">RM 45.00</span>
+                        <button class="w-10 h-10 bg-white text-black rounded-full flex items-center justify-center font-bold text-xl hover:bg-[#d35400] hover:text-white transition">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex justify-center">
+            <a href="menu.html" class="group flex flex-col items-center gap-3">
+                <div class="px-10 py-4 border border-white/10 rounded-full font-bold text-xs uppercase tracking-[0.2em] group-hover:bg-white group-hover:text-black transition-all duration-500">
+                    See All Menu
+                </div>
+                <div class="w-px h-12 bg-gradient-to-b from-orange-600 to-transparent group-hover:h-16 transition-all duration-500"></div>
+            </a>
+        </div>
+    </section>
+
+    <section class="py-24 px-10 grid md:grid-cols-2 gap-20 items-center">
+        <div class="relative">
+            <div class="absolute -top-4 -left-4 bg-accent px-6 py-2 z-10 text-xs font-bold uppercase tracking-widest">Since 1984</div>
+            <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&q=80&w=1000" class="rounded-2xl grayscale hover:grayscale-0 transition duration-700 shadow-2xl" alt="Grilling Experience">
+        </div>
+        <div>
+            <h2 class="text-5xl font-serif mb-8">The <span class="accent-orange italic uppercase">Bara Api</span><br>Experience</h2>
+            <p class="text-gray-400 font-light leading-loose mb-10">Our traditional charcoal grilling technique locks in the natural juices and imparts a unique smoky aroma that defines Malay heritage cuisine. Every flame is a tribute to our ancestors.</p>
+            
+            <div class="grid grid-cols-2 gap-8">
+                <div>
+                    <span class="accent-orange text-2xl mb-2 block">♨</span>
+                    <h4 class="font-bold text-sm mb-1 uppercase tracking-tight">Fresh Daily Catch</h4>
+                    <p class="text-gray-500 text-[11px]">Sourced every morning from local fishermen in Kunak.</p>
+                </div>
+                <div>
+                    <span class="accent-orange text-2xl mb-2 block">🌿</span>
+                    <h4 class="font-bold text-sm mb-1 uppercase tracking-tight">Heirloom Spices</h4>
+                    <p class="text-gray-500 text-[11px]">Hand-ground spices blended with fresh turmeric and ginger.</p>
+                </div>
+                <div>
+                    <span class="accent-orange text-2xl mb-2 block">🔥</span>
+                    <h4 class="font-bold text-sm mb-1 uppercase tracking-tight">Arang Mangium</h4>
+                    <p class="text-gray-500 text-[11px]">We use only premium Mangium charcoal for superior smoke.</p>
+                </div>
+                <div>
+                    <span class="accent-orange text-2xl mb-2 block">❤️</span>
+                    <h4 class="font-bold text-sm mb-1 uppercase tracking-tight">Cooked with Soul</h4>
+                    <p class="text-gray-500 text-[11px]">Prepared upon order by master grillers with decades of experience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-10">
+        <div class="bg-[#141414] p-20 rounded-[3rem] text-center relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10 pointer-events-none">
+                <img src="https://www.transparenttextures.com/patterns/dark-matter.png" alt="">
+            </div>
+            
+            <h2 class="text-4xl md:text-5xl font-serif mb-4">Can't make it to the restaurant? <br><span class="accent-orange italic">We'll bring the grill to you.</span></h2>
+            <p class="text-gray-400 mb-10 max-w-xl mx-auto font-light">Enjoy your favorite grilled dishes in the comfort of your home. Fast, fresh, and still smoking hot.</p>
+            
+            <div class="flex flex-col md:flex-row gap-4 justify-center items-center">
+                <button class="bg-accent px-10 py-4 rounded-full font-bold text-sm">Order Online Now</button>
+                <button class="border border-white/20 px-10 py-4 rounded-full font-bold text-sm">Download Menu PDF</button>
+            </div>
+            
+            <div class="mt-8 flex justify-center items-center gap-2">
+                <div class="flex -space-x-2">
+                    <div class="w-8 h-8 rounded-full bg-gray-500 border-2 border-[#141414]"></div>
+                    <div class="w-8 h-8 rounded-full bg-gray-400 border-2 border-[#141414]"></div>
+                    <div class="w-8 h-8 rounded-full bg-gray-300 border-2 border-[#141414]"></div>
+                </div>
+                <span class="text-[10px] text-gray-500 uppercase tracking-widest">500+ Happy Customers</span>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black py-20 px-10 border-t border-white/5">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+            <div>
+                <div class="flex items-center gap-2 mb-6">
+                    <div class="w-8 h-8 bg-accent rounded flex items-center justify-center font-bold text-white italic">IK</div>
+                    <span class="font-serif font-bold text-lg tracking-wide uppercase">Ikan Bakar <span class="accent-orange">Kunak</span></span>
+                </div>
+                <p class="text-gray-500 text-xs leading-relaxed">Bringing the traditional smoky flavors of Sabah to the heart of the city. Authentic grilling since 1984.</p>
+            </div>
+            <div>
+                <h5 class="text-xs font-bold uppercase tracking-[0.2em] mb-6">Quick Links</h5>
+                <ul class="text-gray-500 text-xs space-y-4 font-light">
+                    <li><a href="#" class="hover:text-white">Today's Catch</a></li>
+                    <li><a href="#" class="hover:text-white">Our Menu</a></li>
+                    <li><a href="#" class="hover:text-white">Gift Cards</a></li>
+                    <li><a href="#" class="hover:text-white">Reservations</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-xs font-bold uppercase tracking-[0.2em] mb-6">Opening Hours</h5>
+                <ul class="text-gray-500 text-xs space-y-2 font-light">
+                    <li class="flex justify-between"><span>Mon - Thu</span> <span>11:00 - 22:00</span></li>
+                    <li class="flex justify-between"><span>Fri - Sat</span> <span>11:00 - 23:00</span></li>
+                    <li class="flex justify-between"><span>Sunday</span> <span class="text-accent-orange">Closed</span></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-xs font-bold uppercase tracking-[0.2em] mb-6">Location</h5>
+                <p class="text-gray-500 text-xs mb-4">12, Jalan Kunak Jaya,<br>Taman Segar, 56100<br>Kuala Lumpur, Malaysia</p>
+                <p class="text-gray-200 font-bold">+60 3 8842 0912</p>
+            </div>
+        </div>
+        <div class="flex justify-between items-center text-[10px] text-gray-600 uppercase tracking-widest border-t border-white/5 pt-10">
+            <p>&copy; 2026 Ikan Bakar Kunak. All Rights Reserved.</p>
+            <div class="flex gap-6">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-black/90', 'backdrop-blur-md', 'py-4');
+                nav.classList.remove('py-6', 'bg-transparent');
+            } else {
+                nav.classList.remove('bg-black/90', 'backdrop-blur-md', 'py-4');
+                nav.classList.add('py-6', 'bg-transparent');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experience | Ikan Bakar Kunak</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0c0c0c; color: #ffffff; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .accent-orange { color: #d35400; }
+    </style>
+</head>
+<body>
+    <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/10 px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+            <span class="text-xl font-bold tracking-tighter uppercase"><span class="accent-orange">Ikan Bakar</span> Kunak</span>
+        </div>
+        <div class="hidden md:flex gap-8 text-sm font-light uppercase tracking-widest">
+            <a href="index.html" class="hover:text-orange-400 transition">Home</a>
+            <a href="menu.html" class="hover:text-orange-400 transition">Menu</a>
+            <a href="about.html" class="accent-orange font-bold">Experience</a>
+            <a href="contact.html" class="hover:text-orange-400 transition">Contact</a>
+        </div>
+        <button class="bg-orange-600 text-white px-6 py-2 rounded-full text-xs font-bold uppercase">Order Now</button>
+    </nav>
+
+    <section class="pt-40 pb-20 px-6 md:px-20 max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
+            <div>
+                <span class="text-orange-500 font-bold uppercase tracking-widest text-[10px] mb-4 block">Our Legacy</span>
+                <h2 class="text-5xl font-serif mb-8 leading-tight">The <span class="accent-orange italic">Bara Api</span> Experience</h2>
+                <p class="text-gray-400 font-light leading-relaxed mb-6">Sejak tahun 1984, Ikan Bakar Kunak telah mengekalkan cara panggangan arang tradisional yang memberikan aroma asap unik. Kami tidak menggunakan gas; hanya haba dari Arang Mangium pilihan.</p>
+                <p class="text-gray-400 font-light leading-relaxed">Setiap rempah diadun sendiri secara manual untuk memastikan profil rasa warisan tidak hilang ditelan zaman.</p>
+            </div>
+            <div class="relative">
+                <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=800" class="rounded-2xl grayscale hover:grayscale-0 transition duration-700 shadow-2xl" alt="Grill">
+            </div>
+        </div>
+    </section>
+</body>
+</html>
